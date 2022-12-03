@@ -4,8 +4,7 @@
     {
         public (object, object) Run()
         {
-            // to do: update the path to hide the external part
-            var lines = File.ReadAllLines($"{Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.Parent?.FullName}/Input Data/{GetType().Name}.txt");
+            var lines = File.ReadAllLines($"{Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName}/Input Data/{GetType().Name}.txt");
             return (Part1(lines), Part2(lines));
         }
 
