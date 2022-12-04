@@ -1,7 +1,7 @@
-﻿using AdventOfCode2022;
+﻿using AdventOfCode2022.Days;
 
-/* var dayX = new DayX();
-Console.WriteLine(dayX.Run()); */
+/* DayX day = new();
+Console.WriteLine(day.Run()); */
 
-var day3 = new Day3();
-Console.WriteLine(day3.Run());
+Day4 day = new();
+Console.WriteLine(day.Run());

@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2022
+﻿namespace AdventOfCode2022.Days
 {
     // Rucksack Reorganization
     public sealed class Day3 : AdventOfCode
@@ -9,21 +9,20 @@
 
         private static int FindPriority(char symbol) => symbol - (symbol < ASCII_CODE_TO_COMPARE_TO ? UPPERCASE_SUBTRAHEND : LOWERCASE_SUBTRAHEND);
 
-        protected override object Part1(string[] lines)
+        protected override object Part1()
         {
             var prioritiesSum = 0;
 
             foreach (var line in lines)
             {
-                var compartments = line.Chunk(line.Length / 2).Select(x => new string(x)).ToList();
-                var appearingItem = compartments[0].Where(_ => compartments[1].Contains(_)).First();
+                var compartments = line.Chunk(line.Length / 2).ToArray();
+                var appearingItem = compartments[0].Intersect(compartments[1]).First();
                 prioritiesSum += FindPriority(appearingItem);
             }
-
             return prioritiesSum;
         }
 
-        protected override object Part2(string[] lines)
+        protected override object Part2()
         {
             var prioritiesSum = 0;
             string[][] groups = lines.Chunk(3).ToArray();

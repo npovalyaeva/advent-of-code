@@ -2,14 +2,15 @@
 {
     public abstract class AdventOfCode
     {
-        public (object, object) Run()
-        {
-            var lines = File.ReadAllLines($"{Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName}/Input Data/{GetType().Name}.txt");
-            return (Part1(lines), Part2(lines));
-        }
+        protected readonly string[] lines;
 
-        protected abstract object Part1(string[] lines);
+        public AdventOfCode() => 
+            lines = File.ReadAllLines($"{Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName}/Input Data/{GetType().Name}.txt");
 
-        protected abstract object Part2(string[] lines);
+        public (object, object) Run() => (Part1(), Part2());
+
+        protected abstract object Part1();
+
+        protected abstract object Part2();
     }
 }
