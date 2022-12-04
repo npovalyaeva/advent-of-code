@@ -1,47 +1,33 @@
-﻿namespace AdventOfCode2022.Days
+﻿using static System.Collections.Specialized.BitVector32;
+
+namespace AdventOfCode2022.Days
 {
     // Camp Cleanup
-    public class Day4 : AdventOfCode
+    public sealed class Day4 : Day
 	{
-        protected override object Part1()
+        protected override object Part1() => CalcPairsCount(Contain);
+        protected override object Part2() => CalcPairsCount(Overlap);
+
+        private object CalcPairsCount(Func<IEnumerable<int[]>, bool> action)
         {
             var pairsCount = 0;
+
             foreach (var line in lines)
             {
-                var section = line.Split(",").Select(_ => _.Split("-").ToArray());
-                pairsCount += Convert.ToInt32(IsFullyContained(section));
+                var sections = line.Split(",")
+                    .Select(_ => _.Split("-"))
+                    .Select(_ => Array.ConvertAll(_, int.Parse));
 
+                pairsCount += Convert.ToInt32(action(sections));
             }
             return pairsCount;
         }
 
-        protected override object Part2()
-        {
-            var pairsCount = 0;
-            foreach (var line in lines)
-            {
-                var section = line.Split(",").Select(_ => _.Split("-").ToArray());
-                pairsCount += Convert.ToInt32(IsOverlapped(section));
+        private static bool Contain(IEnumerable<int[]> s) =>
+            (s.First().First() >= s.Last().First() && s.First().Last() <= s.Last().Last())
+            || (s.Last().First() >= s.First().First() && s.Last().Last() <= s.First().Last());
 
-            }
-            return pairsCount;
-        }
-
-        private static bool IsFullyContained(IEnumerable<string[]> section)
-        {
-            return !(GetRange(section.Last())).Except(GetRange(section.First())).Any()
-                || !(GetRange(section.First())).Except(GetRange(section.Last())).Any();
-        }
-
-        private static bool IsOverlapped(IEnumerable<string[]> section)
-        {
-            return GetRange(section.Last()).Where(GetRange(section.First()).Contains).Any();
-        }
-
-        private static IEnumerable<int> GetRange(string[] section)
-        {
-            int[] ints = Array.ConvertAll(section, int.Parse);
-            return Enumerable.Range(ints[0], ints[1] - ints[0] + 1);
-        }
+        private static bool Overlap(IEnumerable<int[]> s) =>
+            s.First().First() <= s.Last().Last() && s.Last().First() <= s.First().Last();
     }
 }
