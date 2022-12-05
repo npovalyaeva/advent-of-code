@@ -3,8 +3,8 @@
     [Solution(Puzzle = "Calorie Counting")]
     public sealed class Day1 : Day
     {
-        protected override object Part1() => CalcCalories(1);
-        protected override object Part2() => CalcCalories(3);
+        protected override object Part1() => CalcCalories(amountOfElves: 1);
+        protected override object Part2() => CalcCalories(amountOfElves: 3);
 
         private object CalcCalories(int amountOfElves)
         {

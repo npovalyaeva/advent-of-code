@@ -5,8 +5,8 @@ namespace AdventOfCode2022.Days
     [Solution(Puzzle = "Supply Stacks")]
     public sealed class Day5 : Day
     {
-        protected override object Part1() => Rearrange(false);
-        protected override object Part2() => Rearrange(true);
+        protected override object Part1() => Rearrange(isOrderRetained: false);
+        protected override object Part2() => Rearrange(isOrderRetained: true);
 
         private object Rearrange(bool isOrderRetained)
         {
