@@ -3,5 +3,5 @@
 /* DayX day = new();
 Console.WriteLine(day.Run()); */
 
-Day4 day = new();
+Day5 day = new();
 Console.WriteLine(day.Run());
