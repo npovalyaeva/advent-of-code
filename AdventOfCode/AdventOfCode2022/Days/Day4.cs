@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode2022.Days
 {
-    // Camp Cleanup
+    [Solution(Puzzle = "Camp Cleanup")]
     public sealed class Day4 : Day
 	{
         protected override object Part1() => CalcPairsCount(Contain);

@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode2022.Days
 {
-    // Rucksack Reorganization
+    [Solution(Puzzle = "Rucksack Reorganization")]
     public sealed class Day3 : Day
     {
         const int ASCII_CODE_TO_COMPARE_TO = 93; // could be 91..96
@@ -36,4 +36,3 @@
         }
     }
 }
-

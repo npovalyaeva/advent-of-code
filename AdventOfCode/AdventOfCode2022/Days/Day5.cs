@@ -2,6 +2,7 @@
 
 namespace AdventOfCode2022.Days
 {
+    [Solution(Puzzle = "Supply Stacks")]
     public sealed class Day5 : Day
     {
         protected override object Part1() => Rearrange(false);
@@ -12,19 +13,18 @@ namespace AdventOfCode2022.Days
             var stacksOfCrates = InitializeStacksOfCrates();
             foreach (var line in lines)
             {
-                var rearrangementNums = Regex.Matches(line, @"\d+").Cast<Match>()
-                    .Select(_ => Int32.Parse(_.Value)).ToArray();
+                var procedureNums = Regex.Matches(line, @"\d+").Select(_ => Int32.Parse(_.Value)).ToArray();
 
                 List<char> cratesToMove = new();
-                for (int i = 0; i < rearrangementNums[0]; i++)
+                for (int i = 0; i < procedureNums[0]; i++)
                 {
-                    cratesToMove.Add(stacksOfCrates[rearrangementNums[1] - 1].Pop());
+                    cratesToMove.Add(stacksOfCrates[procedureNums[1] - 1].Pop());
 
                 }
                 if (isOrderRetained) cratesToMove.Reverse();
                 foreach (var crate in cratesToMove)
                 {
-                    stacksOfCrates[rearrangementNums[2] - 1].Push(crate);
+                    stacksOfCrates[procedureNums[2] - 1].Push(crate);
                 }
             }
             return String.Join("", stacksOfCrates.Select(_ => _.Pop()));
@@ -45,13 +45,7 @@ namespace AdventOfCode2022.Days
                 new List<char>{ 'H', 'P', 'F', 'R' },
                 new List<char>{ 'Z', 'S', 'M', 'B', 'L', 'N', 'P', 'H' },
             };
-
-            List<Stack<char>> stacksOfCrates = new();
-            foreach (var list in listsOfCrates)
-            {
-                stacksOfCrates.Add(new Stack<char>(list));
-            }
-            return stacksOfCrates;
+            return listsOfCrates.Select(_ => new Stack<char>(_)).ToList();
         }
     }
 }
