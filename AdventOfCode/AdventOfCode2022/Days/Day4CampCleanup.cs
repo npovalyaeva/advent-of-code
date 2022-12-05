@@ -1,6 +1,4 @@
-﻿using static System.Collections.Specialized.BitVector32;
-
-namespace AdventOfCode2022.Days
+﻿namespace AdventOfCode2022.Days
 {
     // Camp Cleanup
     public sealed class Day4 : Day
