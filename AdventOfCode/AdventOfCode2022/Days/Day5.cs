@@ -13,19 +13,16 @@ namespace AdventOfCode2022.Days
             var stacksOfCrates = InitializeStacksOfCrates();
             foreach (var line in lines)
             {
-                var procedureNums = Regex.Matches(line, @"\d+").Select(_ => Int32.Parse(_.Value)).ToArray();
+                var procedure = Regex.Matches(line, @"\d+").Select(_ => Int32.Parse(_.Value)).ToArray();
 
                 List<char> cratesToMove = new();
-                for (int i = 0; i < procedureNums[0]; i++)
+                for (int i = 0; i < procedure[0]; i++)
                 {
-                    cratesToMove.Add(stacksOfCrates[procedureNums[1] - 1].Pop());
+                    cratesToMove.Add(stacksOfCrates[procedure[1] - 1].Pop());
+                }
 
-                }
                 if (isOrderRetained) cratesToMove.Reverse();
-                foreach (var crate in cratesToMove)
-                {
-                    stacksOfCrates[procedureNums[2] - 1].Push(crate);
-                }
+                cratesToMove.ForEach(_ => stacksOfCrates[procedure[2] - 1].Push(_));
             }
             return String.Join("", stacksOfCrates.Select(_ => _.Pop()));
         }
