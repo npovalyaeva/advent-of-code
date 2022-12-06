@@ -14,15 +14,17 @@ namespace AdventOfCode2022.Days
             foreach (var line in lines)
             {
                 var procedure = Regex.Matches(line, @"\d+").Select(_ => Int32.Parse(_.Value)).ToArray();
-
-                List<char> cratesToMove = new();
-                for (int i = 0; i < procedure[0]; i++)
+                if (procedure is [int amount, int from, int to])
                 {
-                    cratesToMove.Add(stacksOfCrates[procedure[1] - 1].Pop());
-                }
+                    List<char> cratesToMove = new();
+                    for (int i = 0; i < amount; i++)
+                    {
+                        cratesToMove.Add(stacksOfCrates[from - 1].Pop());
+                    }
 
-                if (isOrderRetained) cratesToMove.Reverse();
-                cratesToMove.ForEach(_ => stacksOfCrates[procedure[2] - 1].Push(_));
+                    if (isOrderRetained) cratesToMove.Reverse();
+                    cratesToMove.ForEach(_ => stacksOfCrates[to - 1].Push(_));
+                }
             }
             return String.Join("", stacksOfCrates.Select(_ => _.Pop()));
         }
