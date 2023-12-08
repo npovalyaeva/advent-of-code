@@ -7,16 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
   <ItemGroup>
+    <None Remove="Input Data\" />
     <None Remove="Days\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Input Data\" />
     <Folder Include="Days\" />
   </ItemGroup>
 </Project>
