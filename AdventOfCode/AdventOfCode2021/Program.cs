@@ -1,7 +1,7 @@
-﻿using AdventOfCode2022.Days;
+﻿using AdventOfCode2021.Days;
 
 /* DayX day = new();
 Console.WriteLine(day.Run()); */
 
-Day14 day = new();
+Day5 day = new();
 Console.WriteLine(day.Run());
